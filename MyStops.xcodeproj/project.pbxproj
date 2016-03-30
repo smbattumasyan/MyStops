@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8014F16F1CABBFFF00149F21 /* Place+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8014F16C1CABBFFF00149F21 /* Place+CoreDataProperties.m */; };
+		8014F1701CABBFFF00149F21 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 8014F16E1CABBFFF00149F21 /* Place.m */; };
+		8014F1741CABC02D00149F21 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8014F1731CABC02D00149F21 /* CoreDataManager.m */; };
+		8014F17B1CABC2D000149F21 /* PlaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8014F17A1CABC2D000149F21 /* PlaceManager.m */; };
+		8014F17E1CABE89500149F21 /* MSViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8014F17D1CABE89500149F21 /* MSViewCell.m */; };
+		8014F1811CABF47B00149F21 /* MSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8014F1801CABF47B00149F21 /* MSMapViewController.m */; };
+		8014F1851CABF82B00149F21 /* MSMapDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8014F1841CABF82B00149F21 /* MSMapDataController.m */; };
 		80F0D6F71CABBAFF0010FA0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F0D6F61CABBAFF0010FA0A /* main.m */; };
 		80F0D6FA1CABBB000010FA0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F0D6F91CABBB000010FA0A /* AppDelegate.m */; };
-		80F0D6FD1CABBB000010FA0A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F0D6FC1CABBB000010FA0A /* ViewController.m */; };
 		80F0D7001CABBB000010FA0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80F0D6FE1CABBB000010FA0A /* Main.storyboard */; };
 		80F0D7031CABBB000010FA0A /* MyStops.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80F0D7011CABBB000010FA0A /* MyStops.xcdatamodeld */; };
 		80F0D7051CABBB000010FA0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80F0D7041CABBB000010FA0A /* Assets.xcassets */; };
 		80F0D7081CABBB000010FA0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80F0D7061CABBB000010FA0A /* LaunchScreen.storyboard */; };
 		80F0D7131CABBB000010FA0A /* MyStopsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F0D7121CABBB000010FA0A /* MyStopsTests.m */; };
 		80F0D71E1CABBB000010FA0A /* MyStopsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F0D71D1CABBB000010FA0A /* MyStopsUITests.m */; };
+		80F0D72D1CABBC210010FA0A /* MSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F0D72C1CABBC210010FA0A /* MSViewController.m */; };
+		80F0D7311CABBC910010FA0A /* MSDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F0D7301CABBC910010FA0A /* MSDataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +44,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8014F16B1CABBFFF00149F21 /* Place+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Place+CoreDataProperties.h"; sourceTree = "<group>"; };
+		8014F16C1CABBFFF00149F21 /* Place+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Place+CoreDataProperties.m"; sourceTree = "<group>"; };
+		8014F16D1CABBFFF00149F21 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		8014F16E1CABBFFF00149F21 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		8014F1721CABC02D00149F21 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		8014F1731CABC02D00149F21 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		8014F1791CABC2D000149F21 /* PlaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceManager.h; sourceTree = "<group>"; };
+		8014F17A1CABC2D000149F21 /* PlaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceManager.m; sourceTree = "<group>"; };
+		8014F17C1CABE89500149F21 /* MSViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSViewCell.h; sourceTree = "<group>"; };
+		8014F17D1CABE89500149F21 /* MSViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSViewCell.m; sourceTree = "<group>"; };
+		8014F17F1CABF47B00149F21 /* MSMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSMapViewController.h; sourceTree = "<group>"; };
+		8014F1801CABF47B00149F21 /* MSMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSMapViewController.m; sourceTree = "<group>"; };
+		8014F1831CABF82B00149F21 /* MSMapDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSMapDataController.h; sourceTree = "<group>"; };
+		8014F1841CABF82B00149F21 /* MSMapDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSMapDataController.m; sourceTree = "<group>"; };
 		80F0D6F21CABBAFF0010FA0A /* MyStops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyStops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80F0D6F61CABBAFF0010FA0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		80F0D6F81CABBAFF0010FA0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		80F0D6F91CABBB000010FA0A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		80F0D6FB1CABBB000010FA0A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		80F0D6FC1CABBB000010FA0A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		80F0D6FF1CABBB000010FA0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80F0D7021CABBB000010FA0A /* MyStops.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyStops.xcdatamodel; sourceTree = "<group>"; };
 		80F0D7041CABBB000010FA0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +73,10 @@
 		80F0D7191CABBB000010FA0A /* MyStopsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyStopsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80F0D71D1CABBB000010FA0A /* MyStopsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyStopsUITests.m; sourceTree = "<group>"; };
 		80F0D71F1CABBB000010FA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80F0D72B1CABBC210010FA0A /* MSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSViewController.h; sourceTree = "<group>"; };
+		80F0D72C1CABBC210010FA0A /* MSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSViewController.m; sourceTree = "<group>"; };
+		80F0D72F1CABBC910010FA0A /* MSDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDataController.h; sourceTree = "<group>"; };
+		80F0D7301CABBC910010FA0A /* MSDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +104,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8014F16A1CABBF8300149F21 /* MSDataController */ = {
+			isa = PBXGroup;
+			children = (
+				8014F17C1CABE89500149F21 /* MSViewCell.h */,
+				8014F17D1CABE89500149F21 /* MSViewCell.m */,
+				80F0D72F1CABBC910010FA0A /* MSDataController.h */,
+				80F0D7301CABBC910010FA0A /* MSDataController.m */,
+				80F0D72B1CABBC210010FA0A /* MSViewController.h */,
+				80F0D72C1CABBC210010FA0A /* MSViewController.m */,
+			);
+			name = MSDataController;
+			sourceTree = "<group>";
+		};
+		8014F1711CABC00700149F21 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				8014F1721CABC02D00149F21 /* CoreDataManager.h */,
+				8014F1731CABC02D00149F21 /* CoreDataManager.m */,
+				8014F1771CABC21400149F21 /* Models */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		8014F1771CABC21400149F21 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8014F1781CABC29000149F21 /* Place */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		8014F1781CABC29000149F21 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				8014F16B1CABBFFF00149F21 /* Place+CoreDataProperties.h */,
+				8014F16C1CABBFFF00149F21 /* Place+CoreDataProperties.m */,
+				8014F16D1CABBFFF00149F21 /* Place.h */,
+				8014F16E1CABBFFF00149F21 /* Place.m */,
+				8014F1791CABC2D000149F21 /* PlaceManager.h */,
+				8014F17A1CABC2D000149F21 /* PlaceManager.m */,
+			);
+			name = Place;
+			sourceTree = "<group>";
+		};
+		8014F1821CABF48200149F21 /* MSMapViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8014F1831CABF82B00149F21 /* MSMapDataController.h */,
+				8014F1841CABF82B00149F21 /* MSMapDataController.m */,
+				8014F17F1CABF47B00149F21 /* MSMapViewController.h */,
+				8014F1801CABF47B00149F21 /* MSMapViewController.m */,
+			);
+			name = MSMapViewController;
+			sourceTree = "<group>";
+		};
 		80F0D6E91CABBAFF0010FA0A = {
 			isa = PBXGroup;
 			children = (
@@ -103,15 +182,10 @@
 		80F0D6F41CABBAFF0010FA0A /* MyStops */ = {
 			isa = PBXGroup;
 			children = (
+				8014F1711CABC00700149F21 /* CoreData */,
 				80F0D6F81CABBAFF0010FA0A /* AppDelegate.h */,
 				80F0D6F91CABBB000010FA0A /* AppDelegate.m */,
-				80F0D6FB1CABBB000010FA0A /* ViewController.h */,
-				80F0D6FC1CABBB000010FA0A /* ViewController.m */,
-				80F0D6FE1CABBB000010FA0A /* Main.storyboard */,
-				80F0D7041CABBB000010FA0A /* Assets.xcassets */,
-				80F0D7061CABBB000010FA0A /* LaunchScreen.storyboard */,
-				80F0D7091CABBB000010FA0A /* Info.plist */,
-				80F0D7011CABBB000010FA0A /* MyStops.xcdatamodeld */,
+				80F0D72E1CABBC280010FA0A /* Controller */,
 				80F0D6F51CABBAFF0010FA0A /* Supporting Files */,
 			);
 			path = MyStops;
@@ -120,6 +194,11 @@
 		80F0D6F51CABBAFF0010FA0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				80F0D6FE1CABBB000010FA0A /* Main.storyboard */,
+				80F0D7041CABBB000010FA0A /* Assets.xcassets */,
+				80F0D7061CABBB000010FA0A /* LaunchScreen.storyboard */,
+				80F0D7091CABBB000010FA0A /* Info.plist */,
+				80F0D7011CABBB000010FA0A /* MyStops.xcdatamodeld */,
 				80F0D6F61CABBAFF0010FA0A /* main.m */,
 			);
 			name = "Supporting Files";
@@ -141,6 +220,15 @@
 				80F0D71F1CABBB000010FA0A /* Info.plist */,
 			);
 			path = MyStopsUITests;
+			sourceTree = "<group>";
+		};
+		80F0D72E1CABBC280010FA0A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8014F16A1CABBF8300149F21 /* MSDataController */,
+				8014F1821CABF48200149F21 /* MSMapViewController */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,8 +361,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80F0D6FD1CABBB000010FA0A /* ViewController.m in Sources */,
+				8014F1851CABF82B00149F21 /* MSMapDataController.m in Sources */,
+				8014F17E1CABE89500149F21 /* MSViewCell.m in Sources */,
+				8014F1811CABF47B00149F21 /* MSMapViewController.m in Sources */,
+				80F0D7311CABBC910010FA0A /* MSDataController.m in Sources */,
+				80F0D72D1CABBC210010FA0A /* MSViewController.m in Sources */,
+				8014F1741CABC02D00149F21 /* CoreDataManager.m in Sources */,
+				8014F1701CABBFFF00149F21 /* Place.m in Sources */,
 				80F0D6FA1CABBB000010FA0A /* AppDelegate.m in Sources */,
+				8014F16F1CABBFFF00149F21 /* Place+CoreDataProperties.m in Sources */,
+				8014F17B1CABC2D000149F21 /* PlaceManager.m in Sources */,
 				80F0D6F71CABBAFF0010FA0A /* main.m in Sources */,
 				80F0D7031CABBB000010FA0A /* MyStops.xcdatamodeld in Sources */,
 			);
@@ -500,6 +596,7 @@
 				80F0D7241CABBB000010FA0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		80F0D7251CABBB000010FA0A /* Build configuration list for PBXNativeTarget "MyStopsTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +605,7 @@
 				80F0D7271CABBB000010FA0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		80F0D7281CABBB000010FA0A /* Build configuration list for PBXNativeTarget "MyStopsUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +614,7 @@
 				80F0D72A1CABBB000010FA0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
