@@ -8,8 +8,9 @@
 
 #import <MapKit/MapKit.h>
 #import "MSMapViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface MSMapViewController ()
+@interface MSMapViewController () <CLLocationManagerDelegate>
 
 //------------------------------------------------------------------------------------------
 #pragma mark - IBOutlets
@@ -19,7 +20,9 @@
 //------------------------------------------------------------------------------------------
 #pragma mark - Propertyes
 //------------------------------------------------------------------------------------------
-@property (strong, nonatomic)NSMutableDictionary *aPlace;
+@property (strong, nonatomic         ) NSMutableDictionary *aPlace;
+@property (strong, nonatomic) CLLocationManager   *manager;
+@property (assign, nonatomic) CLLocationCoordinate2D locationCoordinate;
 
 @end
 
@@ -33,18 +36,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+
+    [self setupLocationManager];
+
     if (self.dataController.selectedIndexPath) {
-        Place *place = [self.dataController.placeManager fetchSelectedPlace:self.dataController.selectedIndexPath];
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([place.latitude floatValue], [place.longitude floatValue]);
-        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-        annotation.coordinate = coordinate;
-        [self.mapView addAnnotation:annotation];
-
-        CLLocationCoordinate2D center = CLLocationCoordinate2DMake([place.latitude floatValue], [place.longitude floatValue]);
-        MKCoordinateRegion region = MKCoordinateRegionMake(center, MKCoordinateSpanMake(0.05, 0.05));
+        Place *place                      = [self.dataController.placeManager fetchSelectedPlace:self.dataController.selectedIndexPath];
+        CLLocationCoordinate2D center     = CLLocationCoordinate2DMake(self.locationCoordinate.latitude, self.locationCoordinate.longitude);
+        MKCoordinateRegion region         = MKCoordinateRegionMake(center, MKCoordinateSpanMake(0.05, 0.05));
         [self.mapView setRegion:region];
-    }
 
+        NSString *urlString = [NSString stringWithFormat:@"http://maps.apple.com/maps?daddr=%f,%f",[place.latitude floatValue], [place.longitude floatValue]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,7 +66,6 @@
     }
     CGPoint touchLocation = [sender locationInView:self.mapView];
     [self getPinCoordinatesFromMap:touchLocation];
-    [self addPinOnMap];
     [self alertNewPin];
 }
 
@@ -97,7 +99,7 @@
 
 - (void)alertNewPin
 {
-    UIAlertController *newPinAlert = [UIAlertController alertControllerWithTitle:@"New Pin" message:@"Do you to add new Pin" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *newPinAlert = [UIAlertController alertControllerWithTitle:@"New Pin" message:@"Do you to add new pin here" preferredStyle:UIAlertControllerStyleAlert];
     [newPinAlert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
 
         textField.placeholder  = @"Pin Name";
@@ -108,6 +110,7 @@
         UITextField *textField = newPinAlert.textFields[0];
         [self.aPlace addEntriesFromDictionary:@{@"pinTitle":[NSString stringWithFormat:@"%@",textField.text]}];
         [self savePin];
+        [self addPinOnMap];
     }];
 
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
@@ -116,6 +119,29 @@
     [newPinAlert addAction:cancel];
     [newPinAlert addAction:save];
     [self presentViewController:newPinAlert animated:YES completion:nil];
+}
+
+//location Manager
+
+- (void)setupLocationManager
+{
+    self.manager = [[CLLocationManager alloc] init];
+    self.manager.delegate = self;
+    self.manager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.manager requestAlwaysAuthorization];
+    [self.manager startUpdatingLocation];
+    self.mapView.showsUserLocation = YES;
+}
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+{
+    //annotation=37.337556, -122.037217
+    NSLog(@"%@",locations);
+    CLLocation *newLocation = [locations lastObject];
+    self.locationCoordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    MKCoordinateRegion region = MKCoordinateRegionMake(self.locationCoordinate, MKCoordinateSpanMake(0.05, 0.05));
+    [self.mapView setRegion:region];
+    [self.manager stopUpdatingLocation];
 }
 
 /*

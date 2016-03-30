@@ -9,10 +9,13 @@
 #import "MSViewController.h"
 #import "MSMapViewController.h"
 #import "MSMapDataController.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface MSViewController () <UITableViewDelegate>
+@interface MSViewController () <UITableViewDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic  ) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) CLLocationManager   *manager;
+@property (assign, nonatomic) CLLocationCoordinate2D locationCoordinate;
 
 @end
 
@@ -67,8 +70,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"MSViewController" sender:self];
+    [self setupLocationManager];
+    Place *place = [self.msDataController.placeManager.fetchedResultsController objectAtIndexPath:indexPath];
+    NSString *urlString = [NSString stringWithFormat:@"http://maps.apple.com/maps?daddr=%f,%f",[place.latitude floatValue], [place.longitude floatValue]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+//------------------------------------------------------------------------------------------
+#pragma mark - Location Manager
+//------------------------------------------------------------------------------------------
+
+- (void)setupLocationManager
+{
+    self.manager = [[CLLocationManager alloc] init];
+    self.manager.delegate = self;
+    self.manager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.manager requestAlwaysAuthorization];
+    [self.manager startUpdatingLocation];
+}
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+{
+    //annotation=37.337556, -122.037217
+    NSLog(@"%@",locations);
+    CLLocation *newLocation = [locations lastObject];
+    self.locationCoordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    [self.manager stopUpdatingLocation];
 }
 
 //------------------------------------------------------------------------------------------
