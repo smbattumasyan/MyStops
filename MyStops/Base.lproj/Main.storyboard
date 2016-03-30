@@ -131,7 +131,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TOp-Z3-OIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="xz0-Th-X2A">
                     <connections>
-                        <action selector="getCoordinatesWithLongPressOnMap:" destination="3Du-e2-IBA" id="hEe-s3-6FJ"/>
+                        <action selector="LongPressOnMapAction:" destination="3Du-e2-IBA" id="8F6-Rd-9dO"/>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>

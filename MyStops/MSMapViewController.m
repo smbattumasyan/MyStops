@@ -19,7 +19,7 @@
 //------------------------------------------------------------------------------------------
 #pragma mark - Propertyes
 //------------------------------------------------------------------------------------------
-@property (assign, nonatomic)CLLocationCoordinate2D locationCoordinate;
+@property (strong, nonatomic)NSMutableDictionary *aPlace;
 
 @end
 
@@ -56,26 +56,67 @@
 #pragma mark - IBAction
 //------------------------------------------------------------------------------------------
 
-- (IBAction)getCoordinatesWithLongPressOnMap:(UILongPressGestureRecognizer*)sender
+- (IBAction)LongPressOnMapAction:(UILongPressGestureRecognizer*)sender
 {
     if (sender.state != UIGestureRecognizerStateBegan) {
         return;
     }
     CGPoint touchLocation = [sender locationInView:self.mapView];
-    self.locationCoordinate = [self.mapView convertPoint:touchLocation toCoordinateFromView:self.mapView];
-    MKPointAnnotation *annotation             = [[MKPointAnnotation alloc] init];
-    annotation.coordinate                     = self.locationCoordinate;
-    [self.mapView addAnnotation:annotation];
-    [self.dataController.placeManager addPlace:@{@"pinTitle": @"anun",
-                                                 @"latitude": @(self.locationCoordinate.latitude),
-                                                 @"longitude": @(self.locationCoordinate.longitude),}];
+    [self getPinCoordinatesFromMap:touchLocation];
+    [self addPinOnMap];
+    [self alertNewPin];
 }
 
 //------------------------------------------------------------------------------------------
 #pragma mark - Private Methods
 //------------------------------------------------------------------------------------------
 
+-(void)getPinCoordinatesFromMap:(CGPoint)touchLocation
+{
+    CLLocationCoordinate2D locationCoordinate = [self.mapView convertPoint:touchLocation toCoordinateFromView:self.mapView];
+    self.aPlace = [[NSMutableDictionary alloc] initWithDictionary:@{@"latitude": @(locationCoordinate.latitude),
+                                                                   @"longitude": @(locationCoordinate.longitude),}];
+}
 
+- (void)addPinOnMap
+{
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    CLLocationCoordinate2D locationCoordinate;
+    locationCoordinate.latitude   = [[self.aPlace valueForKey:@"latitude"] floatValue];
+    locationCoordinate.longitude  = [[self.aPlace valueForKey:@"longitude"] floatValue];
+    annotation.coordinate         = locationCoordinate;
+    [self.mapView addAnnotation:annotation];
+}
+
+- (void)savePin
+{
+
+    NSLog(@"%@",self.aPlace);
+    [self.dataController.placeManager addPlace:self.aPlace];
+}
+
+- (void)alertNewPin
+{
+    UIAlertController *newPinAlert = [UIAlertController alertControllerWithTitle:@"New Pin" message:@"Do you to add new Pin" preferredStyle:UIAlertControllerStyleAlert];
+    [newPinAlert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+
+        textField.placeholder  = @"Pin Name";
+        textField.keyboardType = UIKeyboardTypeDefault;
+    }];
+
+    UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        UITextField *textField = newPinAlert.textFields[0];
+        [self.aPlace addEntriesFromDictionary:@{@"pinTitle":[NSString stringWithFormat:@"%@",textField.text]}];
+        [self savePin];
+    }];
+
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    }];
+
+    [newPinAlert addAction:cancel];
+    [newPinAlert addAction:save];
+    [self presentViewController:newPinAlert animated:YES completion:nil];
+}
 
 /*
 #pragma mark - Navigation
