@@ -70,10 +70,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self setupLocationManager];
     Place *place = [self.msDataController.placeManager.fetchedResultsController objectAtIndexPath:indexPath];
-    NSString *urlString = [NSString stringWithFormat:@"http://maps.apple.com/maps?daddr=%f,%f",[place.latitude floatValue], [place.longitude floatValue]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    [self setupDirectionWithPlace:place];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -90,13 +88,28 @@
     [self.manager startUpdatingLocation];
 }
 
-- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     //annotation=37.337556, -122.037217
     NSLog(@"%@",locations);
     CLLocation *newLocation = [locations lastObject];
-    self.locationCoordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    [self getLocationCoordinate:newLocation];
     [self.manager stopUpdatingLocation];
+}
+
+//------------------------------------------------------------------------------------------
+#pragma mark - Private Methods
+//------------------------------------------------------------------------------------------
+-(void)setupDirectionWithPlace:(Place *)place
+{
+    [self setupLocationManager];
+    NSString *urlString = [NSString stringWithFormat:@"http://maps.apple.com/maps?daddr=%f,%f",[place.latitude floatValue], [place.longitude floatValue]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+}
+
+- (void)getLocationCoordinate:(CLLocation *)location
+{
+    self.locationCoordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
 }
 
 //------------------------------------------------------------------------------------------
@@ -107,14 +120,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-//    if (selectedIndexPath) {
         if ([segue.identifier isEqualToString:@"MSViewController"]) {
             MSMapViewController *msMapViewController                        = [segue destinationViewController];
             msMapViewController.dataController                              = [MSMapDataController createInstance];
             msMapViewController.dataController.placeManager                 = self.msDataController.placeManager;
             msMapViewController.dataController.placeManager.coreDataManager = self.msDataController.placeManager.coreDataManager;
             msMapViewController.dataController.selectedIndexPath            = selectedIndexPath;
-//        }
     }
 }
 
