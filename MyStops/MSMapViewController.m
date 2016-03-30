@@ -39,15 +39,6 @@
 
     [self setupLocationManager];
 
-    if (self.dataController.selectedIndexPath) {
-        Place *place                      = [self.dataController.placeManager fetchSelectedPlace:self.dataController.selectedIndexPath];
-        CLLocationCoordinate2D center     = CLLocationCoordinate2DMake(self.locationCoordinate.latitude, self.locationCoordinate.longitude);
-        MKCoordinateRegion region         = MKCoordinateRegionMake(center, MKCoordinateSpanMake(0.05, 0.05));
-        [self.mapView setRegion:region];
-
-        NSString *urlString = [NSString stringWithFormat:@"http://maps.apple.com/maps?daddr=%f,%f",[place.latitude floatValue], [place.longitude floatValue]];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -30,10 +30,6 @@
     [super viewDidLoad];
     [self setupTableView];
     [self.msDataController initFetchResultControler];
-
-//    [self.msDataController.placeManager addPlace:@{@"pinTitle": @"hi",
-//                                                   @"latitude": @37.337556,
-//                                                   @"longitude": @-122.037217}];
 }
 
 - (void)didReceiveMemoryWarning
