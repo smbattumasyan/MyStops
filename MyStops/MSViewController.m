@@ -9,13 +9,13 @@
 #import "MSViewController.h"
 #import "MSMapViewController.h"
 #import "MSMapDataController.h"
-#import <CoreLocation/CoreLocation.h>
 
-@interface MSViewController () <UITableViewDelegate, CLLocationManagerDelegate>
+@interface MSViewController () <UITableViewDelegate>
 
+//------------------------------------------------------------------------------------------
+#pragma mark - IBOutlets
+//------------------------------------------------------------------------------------------
 @property (weak, nonatomic  ) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) CLLocationManager   *manager;
-@property (assign, nonatomic) CLLocationCoordinate2D locationCoordinate;
 
 @end
 
@@ -72,40 +72,13 @@
 }
 
 //------------------------------------------------------------------------------------------
-#pragma mark - Location Manager
-//------------------------------------------------------------------------------------------
-
-- (void)setupLocationManager
-{
-    self.manager = [[CLLocationManager alloc] init];
-    self.manager.delegate = self;
-    self.manager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.manager requestAlwaysAuthorization];
-    [self.manager startUpdatingLocation];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
-{
-    //annotation=37.337556, -122.037217
-    NSLog(@"%@",locations);
-    CLLocation *newLocation = [locations lastObject];
-    [self getLocationCoordinate:newLocation];
-    [self.manager stopUpdatingLocation];
-}
-
-//------------------------------------------------------------------------------------------
 #pragma mark - Private Methods
 //------------------------------------------------------------------------------------------
+
 -(void)setupDirectionWithPlace:(Place *)place
 {
-    [self setupLocationManager];
     NSString *urlString = [NSString stringWithFormat:@"http://maps.apple.com/maps?daddr=%f,%f",[place.latitude floatValue], [place.longitude floatValue]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-}
-
-- (void)getLocationCoordinate:(CLLocation *)location
-{
-    self.locationCoordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
 }
 
 //------------------------------------------------------------------------------------------

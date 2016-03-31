@@ -20,9 +20,8 @@
 //------------------------------------------------------------------------------------------
 #pragma mark - Propertyes
 //------------------------------------------------------------------------------------------
-@property (strong, nonatomic         ) NSMutableDictionary *aPlace;
+@property (strong, nonatomic) NSMutableDictionary *aPlace;
 @property (strong, nonatomic) CLLocationManager   *manager;
-@property (assign, nonatomic) CLLocationCoordinate2D locationCoordinate;
 
 @end
 
@@ -35,10 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-
     [self setupLocationManager];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,13 +108,21 @@
     [self presentViewController:newPinAlert animated:YES completion:nil];
 }
 
-//location Manager
+- (void)setRegion:(CLLocationCoordinate2D)locationCoordinate
+{
+    MKCoordinateRegion region = MKCoordinateRegionMake(locationCoordinate, MKCoordinateSpanMake(0.05, 0.05));
+    [self.mapView setRegion:region];
+}
+
+//------------------------------------------------------------------------------------------
+#pragma mark - Location Manager
+//------------------------------------------------------------------------------------------
 
 - (void)setupLocationManager
 {
-    self.manager = [[CLLocationManager alloc] init];
-    self.manager.delegate = self;
-    self.manager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.manager                   = [[CLLocationManager alloc] init];
+    self.manager.delegate          = self;
+    self.manager.desiredAccuracy   = kCLLocationAccuracyBest;
     [self.manager requestAlwaysAuthorization];
     [self.manager startUpdatingLocation];
     self.mapView.showsUserLocation = YES;
@@ -128,10 +132,9 @@
 {
     //annotation=37.337556, -122.037217
     NSLog(@"%@",locations);
-    CLLocation *newLocation = [locations lastObject];
-    self.locationCoordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    MKCoordinateRegion region = MKCoordinateRegionMake(self.locationCoordinate, MKCoordinateSpanMake(0.05, 0.05));
-    [self.mapView setRegion:region];
+    CLLocation *newLocation                   = [locations lastObject];
+    CLLocationCoordinate2D locationCoordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    [self setRegion:locationCoordinate];
     [self.manager stopUpdatingLocation];
 }
 
@@ -144,5 +147,8 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+//latitude = "40.18389499047289";
+//longitude = "44.51573510750285";
 
 @end
